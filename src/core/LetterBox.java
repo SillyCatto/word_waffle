@@ -24,7 +24,8 @@ public class LetterBox extends JLabel {
     public enum BoxType {
         GREEN,
         YELLOW,
-        GRAY
+        GRAY,
+        DEFAULT
     }
 
 
@@ -71,13 +72,16 @@ public class LetterBox extends JLabel {
                 this.setBackground(green);
                 break;
 
-            // set default border color
-            default:
+            // set box color
+            case DEFAULT:
                 this.border = BorderFactory.createLineBorder(defaultBorder, borderThickness);
                 this.setBorder(border);
                 this.setBackground(Color.WHITE);
                 this.setForeground(Color.BLACK);
                 break;
+
+            default:
+                System.err.println("Invalid Box Type");
         }
     }
 

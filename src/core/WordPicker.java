@@ -30,8 +30,8 @@ public class WordPicker {
 
     public void generateWord(){
         Random rnd = new Random();
-        WordPicker.answer = wordList.get(rnd.nextInt(wordList.size()));
-        System.out.println("current answer is: " + WordPicker.answer);
+        answer = wordList.get(rnd.nextInt(wordList.size()));
+        System.out.println("current answer is: " + answer);
     }
 
 

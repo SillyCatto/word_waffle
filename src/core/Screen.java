@@ -3,15 +3,23 @@ package core;
 import javax.swing.*;
 
 public abstract class Screen extends JPanel{
-    public enum Type{
+    protected Window window;
+
+    public enum ScreenType {
         WELCOME,
         HELP,
         ABOUT,
         GAMEPLAY,
-        HINT,
+//        HINT,
         WIN,
         LOSE
     }
 
-    public abstract void update(JFrame frame);
+
+    public Screen(Window window) {
+        this.window = window;
+    }
+
+    public abstract void initialize();
+    public abstract void update();
 }

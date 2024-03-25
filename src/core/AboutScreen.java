@@ -4,17 +4,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HelpScreen extends Screen {
+public class AboutScreen extends Screen{
     private JButton goBack;
-    public HelpScreen(Window window) {
+    public AboutScreen(Window window){
         super(window);
         initialize();
         update();
     }
 
-    @Override
     public void initialize() {
-        JLabel label = new JLabel("Help screen");
+        JLabel label = new JLabel("About screen");
         goBack = new JButton("Go back");
         this.add(label);
         this.add(goBack);
@@ -29,5 +28,4 @@ public class HelpScreen extends Screen {
             }
         });
     }
-
 }

@@ -1,8 +1,15 @@
+import core.Screen;
 import core.Window;
+
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        Window window = Window.get();
-        window.run();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Window();
+            }
+        });
     }
 }

@@ -9,8 +9,6 @@ public class InputValidator {
     }
     public static InputType checkInput(LetterBox[] gridRow, String currentAnswer)
         throws NotEnoughLettersException {
-//        LetterBox letterBox = gridRow[0];
-//        letterBox.updateBoxColor(LetterBox.BoxType.GREEN);
 
         InputType status = null;
         int correctLetterCount = 0;

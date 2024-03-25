@@ -1,7 +1,5 @@
 package core;
 
-import utils.PositionCounter;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,8 +16,6 @@ public class LetterGrid extends JPanel {
         this.setLayout(new GridLayout(ROW, COLUMN, 5, 5));
         this.setSize(WIDTH, HEIGHT);
 
-//        this.setFocusable(true);
-//        this.requestFocusInWindow();
 
         // create the 2D 5*5 grid array
         for (int row = 0; row < this.grid.length; row++){
@@ -37,6 +33,14 @@ public class LetterGrid extends JPanel {
 
     public LetterBox[] getRow(int row){
         return this.grid[row];
+    }
+
+    public void reset(){
+        for (LetterBox[] letterBoxes : this.grid) { //initialize the array
+            for (LetterBox letterBox : letterBoxes) {
+                letterBox.clear(LetterBox.BoxType.DEFAULT, " ");
+            }
+        }
     }
 
 }
