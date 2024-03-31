@@ -16,6 +16,8 @@ public class GameScreen extends Screen{
 
     private WordPicker wordListFile;
 
+    private Image MainFrameBackgound;
+
     public GameScreen(Window window){
         super(window);
         initialize();
@@ -24,9 +26,29 @@ public class GameScreen extends Screen{
 
     @Override
     public void initialize() {
+        //background for the main game screen
+        MainFrameBackgound = new ImageIcon("./src/resources/MainFrameBackground.png").getImage();
+
+        // The title
+        JLabel titleLabel = new JLabel("Guess the word! Win Waffle!");
+        titleLabel.setFont(new Font("KG Primary Penmanship", Font.BOLD, 45));
+        titleLabel.setForeground(Color.ORANGE); // Set text color to white
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Creating an empty border with top padding of 10 pixels, just to look better
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(12, 0, 0, 0));
+
+        //add it
+        add(titleLabel);
+
+
+
         // offset panel for gap
         JPanel gridOffset = new JPanel();
-        gridOffset.setPreferredSize(new Dimension(550, 100));
+
+        //height changed by RapiBuoy to look better
+        gridOffset.setPreferredSize(new Dimension(550, 105));
+
         gridOffset.setOpaque(false);
 
         // create grid panel
@@ -106,5 +128,12 @@ public class GameScreen extends Screen{
         PositionCounter.setRow(0);
         PositionCounter.setColumn(0);
 
+    }
+
+    //draw the background image
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Draw the background image
+        g.drawImage(MainFrameBackgound, 0, 0, getWidth(), getHeight(), this);
     }
 }

@@ -58,7 +58,7 @@ public class WelcomeScreen extends Screen {
         // help button
         helpBtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+            public void actionPerformed(ActionEvent e) {
                 window.changeScreen(ScreenType.HELP);
             }
         });
@@ -66,7 +66,7 @@ public class WelcomeScreen extends Screen {
         // about button
         aboutBtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+            public void actionPerformed(ActionEvent e) {
                 window.changeScreen(ScreenType.ABOUT);
             }
         });

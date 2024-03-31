@@ -39,8 +39,8 @@ public class LetterBox extends JLabel {
         // box text properties
         this.setText(" ");
         this.setHorizontalAlignment(JLabel.CENTER);
-        this.setVerticalAlignment(JLabel.CENTER);
-        this.setFont(new Font("Serif", Font.BOLD, 30));
+        //changed the font to match the game theme
+        this.setFont(new Font("KG Primary Penmanship", Font.BOLD, 30));
 
         // box border properties
         border = BorderFactory.createLineBorder(defaultBorder, borderThickness);
