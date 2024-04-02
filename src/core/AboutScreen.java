@@ -18,20 +18,43 @@ public class AboutScreen extends Screen {
 
     @Override
     public void initialize() {
-
-        //adding the background image
-
-        //JLabel label = new JLabel("Help screen");
         setLayout(new BorderLayout());
+
+        // Create a panel to hold the button
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setOpaque(false); // Make the panel transparent
+
+        // Create the "Go back" button
         goBack = new JButton("Go back");
 
-        //change the font of the button
+        // Change the font of the button
         Font buttonFont = new Font("KG Primary Penmanship", Font.PLAIN, 16);
         goBack.setFont(buttonFont);
 
-        // this.add(label);
-        this.add(goBack,BorderLayout.SOUTH);
+        // Set preferred size for the button to make it smaller
+        goBack.setPreferredSize(new Dimension(100, 40)); // Adjust dimensions as needed
+
+
+        //adding color to the button
+
+
+
+        // Add ActionListener to the button
+        goBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                window.changeScreen(ScreenType.WELCOME);
+            }
+        });
+
+        // Add the button to the panel
+        buttonPanel.add(goBack);
+
+        // Add the button panel to the center of the HelpScreen
+        add(buttonPanel, BorderLayout.SOUTH);
     }
+
+
 
     @Override
     public void update() {
