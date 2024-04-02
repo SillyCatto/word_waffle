@@ -58,7 +58,7 @@ public class WelcomeScreen extends Screen {
         // help button
         helpBtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent actionEvent) {
                 window.changeScreen(ScreenType.HELP);
             }
         });
@@ -66,7 +66,7 @@ public class WelcomeScreen extends Screen {
         // about button
         aboutBtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent actionEvent) {
                 window.changeScreen(ScreenType.ABOUT);
             }
         });
@@ -75,8 +75,7 @@ public class WelcomeScreen extends Screen {
 
     // add background image to welcome screen
     @Override
-    public void paintComponent( Graphics g )
-    {
+    protected void paintComponent( Graphics g ) {
         super.paintComponent( g );
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(background, 0, 0, null);

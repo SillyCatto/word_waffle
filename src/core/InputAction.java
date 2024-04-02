@@ -32,18 +32,17 @@ public class InputAction {
             if (inputStatus == InputValidator.InputType.CORRECT_WORD) {
                 // win code
                 window.changeScreen(Screen.ScreenType.WIN);
-            }
-
-            if (inputStatus == InputValidator.InputType.WRONG_WORD ||
-                    PositionCounter.getRow() < LetterGrid.ROW) {
-                // wrong word but still have chance
-                PositionCounter.setRow(PositionCounter.getRow() + 1);
-                PositionCounter.setColumn(0);
-            }
-            if (PositionCounter.getRow() == 5){ // lose
-                // fetch the current answer and set it to label
-                window.loseScreen.answerLabel.setText("Answer is: " + WordPicker.getAnswer());
-                window.changeScreen(Screen.ScreenType.LOSE);
+            } else if (inputStatus == InputValidator.InputType.WRONG_WORD &&
+                    PositionCounter.getRow() < LetterGrid.ROW ) {
+                if (PositionCounter.getRow() == 4) { // lose
+                    // fetch the current answer and set it to label
+                    window.loseScreen.answerLabel.setText("Answer is: " + WordPicker.getAnswer());
+                    window.changeScreen(Screen.ScreenType.LOSE);
+                } else {
+                    // wrong word but still have chance
+                    PositionCounter.setRow(PositionCounter.getRow() + 1);
+                    PositionCounter.setColumn(0);
+                }
             }
         } catch (NotEnoughLettersException e) {
             System.out.println("Word is too short!");

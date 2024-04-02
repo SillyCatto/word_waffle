@@ -1,5 +1,7 @@
 package core;
 
+import utils.Button;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,31 +9,24 @@ import java.awt.event.ActionListener;
 
 public class HelpScreen extends Screen {
     private JButton goBack;
-    public Image BackgroundImage;
+    private Image helpScreenImage;
     public HelpScreen(Window window) {
         super(window);
         initialize();
         update();
-        BackgroundImage = new ImageIcon("./src/resources/Help.png").getImage();
-
     }
 
     @Override
     public void initialize() {
+        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 0));
 
-        //adding the background image
+        helpScreenImage = new ImageIcon("./src/resources/screen_help.png").getImage();
 
-        //JLabel label = new JLabel("Help screen");
-        setLayout(new BorderLayout());
+        ImageIcon crossIcon = new ImageIcon("./src/resources/btn_cross.png");
+        goBack = Button.createButton(crossIcon);
 
-        goBack = new JButton("Go back");
-
-        //change the font of the button
-        Font buttonFont = new Font("KG Primary Penmanship", Font.PLAIN, 16);
-        goBack.setFont(buttonFont);
-
-        // this.add(label);
-        this.add(goBack,BorderLayout.SOUTH);
+        this.add(goBack);
     }
 
     @Override
@@ -43,11 +38,12 @@ public class HelpScreen extends Screen {
             }
         });
     }
+
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Draw the background image
-        g.drawImage(BackgroundImage, 0, 0, getWidth(), getHeight(), this);
+        super.paintComponent( g );
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(helpScreenImage, 0, 0, null);
     }
 
 }
