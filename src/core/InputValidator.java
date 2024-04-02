@@ -10,11 +10,11 @@ public class InputValidator {
     public static InputType checkInput(LetterBox[] gridRow, String currentAnswer)
         throws NotEnoughLettersException {
 
-        InputType status = null;
+        InputType status;
         int correctLetterCount = 0;
         LetterBox letterBox;
 
-        if (PositionCounter.getColumn() == LetterGrid.COLUMN){ // length on the word is 5
+        if (PositionCounter.getColumn() == LetterGrid.COLUMN){ // length of the word is 5
             // main loop to check the current input
             for (int i = 0; i < gridRow.length; i++){
                 // get the box at i-th position of row
@@ -43,13 +43,14 @@ public class InputValidator {
                 }
             }
 
-            // all five letters matched - correct answer
-            if(correctLetterCount == 5){
-                status = InputType.CORRECT_WORD;
-            }
-        } else if (PositionCounter.getColumn() < 4){
+
+        } else { // word is short
             throw new NotEnoughLettersException("Word is too short!");
-        } else {
+        }
+
+        if(correctLetterCount == 5){ // all five letters matched - correct answer
+            status = InputType.CORRECT_WORD;
+        } else { // letters didn't match - wrong answer
             status = InputType.WRONG_WORD;
         }
         return status;
