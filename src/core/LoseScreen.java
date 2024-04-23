@@ -6,7 +6,9 @@ import java.awt.event.ActionListener;
 
 public class LoseScreen extends Screen {
     private JButton replay;
+    private JButton goToMain;
     protected JLabel answerLabel;
+
     public LoseScreen(Window window){
         super(window);
         initialize();
@@ -17,11 +19,17 @@ public class LoseScreen extends Screen {
     @Override
     public void initialize() {
         JLabel winLabel = new JLabel("You Lost :(");
+        JLabel LosingScore=new JLabel("Your Score is 0");
         answerLabel = new JLabel();
         replay = new JButton("Replay?");
+        goToMain=new JButton("Go To Main Menu");
+
         this.add(answerLabel);
         this.add(winLabel);
         this.add(replay);
+        this.add(goToMain);
+        this.add(LosingScore);
+
     }
 
     @Override
@@ -37,5 +45,12 @@ public class LoseScreen extends Screen {
                 window.gameScreen.getWordListFile().generateWord();
             }
         });
+        goToMain.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window.changeScreen(ScreenType.WELCOME);
+            }
+        });
     }
+
 }

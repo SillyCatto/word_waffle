@@ -5,6 +5,7 @@ import utils.PositionCounter;
 public class InputAction {
     private final Window window;
     private final GameScreen gameScreen;
+    public int score;
 
     public InputAction(Window window, GameScreen gameScreen){
         this.window = window;
@@ -31,6 +32,32 @@ public class InputAction {
 
             if (inputStatus == InputValidator.InputType.CORRECT_WORD) {
                 // win code
+
+                // Scoring system
+
+                int Guesses = PositionCounter.getRow();
+                System.out.println(PositionCounter.getRow());
+                switch (Guesses) {
+                    case 0:
+                        score = 100;
+                        break;
+                    case 1:
+                        score = 80;
+                        break;
+                    case 2:
+                        score = 60;
+                        break;
+                    case 3:
+                        score = 40;
+                        break;
+                    case 4:
+                        score = 20;
+                        break;
+                    default:
+                        score = 0; // Failure
+                        break;
+                }
+                System.out.println("Your score: " + score);
                 window.changeScreen(Screen.ScreenType.WIN);
             } else if (inputStatus == InputValidator.InputType.WRONG_WORD &&
                     PositionCounter.getRow() < LetterGrid.ROW ) {
@@ -47,6 +74,10 @@ public class InputAction {
         } catch (NotEnoughLettersException e) {
             System.out.println("Word is too short!");
         }
+    }
+
+    public int getScore(){
+        return score;
     }
 
 
