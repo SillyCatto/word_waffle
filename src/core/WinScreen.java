@@ -16,7 +16,9 @@ public class WinScreen extends Screen {
     @Override
     public void initialize() {
         JLabel winLabel = new JLabel("You Won!");
+
         replay = new JButton("Replay?");
+
         this.add(winLabel);
         this.add(replay);
     }
