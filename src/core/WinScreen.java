@@ -1,27 +1,39 @@
 package core;
 
-import utils.PositionCounter;
-
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import utils.PositionCounter;
 
 public class WinScreen extends Screen {
     private JButton replay;
     private JButton goToMain;
     private int score;
+    private ImageIcon backgroundImage;
 
-    public WinScreen(Window window){
+    public WinScreen(Window window) {
         super(window);
         initialize();
         update();
+        // Load background image
+        backgroundImage = new ImageIcon("src/resources/Winning.gif");
     }
+
 
     @Override
     public void initialize() {
+        //setLayout(new BorderLayout()); // Set layout to BorderLayout to use the background
+
+        // Create components
         JLabel winLabel = new JLabel("You Won!");
         replay = new JButton("Replay?");
         goToMain = new JButton("Go To Main Window");
+
+        winLabel.setOpaque(false);
+        replay.setOpaque(false);
+        goToMain.setOpaque(false);
+
 
         // Calculate the score based on guesses
         int guesses = PositionCounter.getRow();
@@ -47,10 +59,13 @@ public class WinScreen extends Screen {
         }
         JLabel winScore = new JLabel("Your Score is " + score);
 
-        this.add(winLabel);
-        this.add(replay);
-        this.add(goToMain);
-        this.add(winScore);
+        // Add components to the panel
+        add(winLabel, BorderLayout.NORTH);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(replay);
+        buttonPanel.add(goToMain);
+        add(buttonPanel, BorderLayout.CENTER);
+        add(winScore, BorderLayout.SOUTH);
     }
 
     @Override
@@ -72,5 +87,12 @@ public class WinScreen extends Screen {
                 window.changeScreen(ScreenType.WELCOME);
             }
         });
+
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Draw the background image
+        g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
     }
 }
