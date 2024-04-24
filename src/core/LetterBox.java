@@ -3,6 +3,8 @@ package core;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class LetterBox extends JLabel {
     // color - not in word
@@ -102,4 +104,23 @@ public class LetterBox extends JLabel {
         this.setText(inputLetter);
         this.setColor(type);
     }
+
+    //there was a stackoverflowerror, so added like this
+
+    // Load custom font with a specified style and size
+    public Font loadCustomFont(String fontPath, int style, int size) {
+        try {
+            // Load font from file
+            File fontFile = new File(fontPath);
+            Font baseFont = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+            // Set the desired style and size
+            return baseFont.deriveFont(style, size);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+            // In case of failure, return a default font
+            return new Font(Font.SANS_SERIF, Font.PLAIN, 14);
+        }
+    }
+
 }
+

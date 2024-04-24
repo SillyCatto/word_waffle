@@ -2,6 +2,7 @@ package core;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 
 public class Window extends JFrame{
     private final JPanel mainPanel;
@@ -22,6 +23,8 @@ public class Window extends JFrame{
         this.setSize(width, height);
         this.setTitle("Word Waffle");
 
+        Font customFont= loadCustomFont("./src/resources/KGPrimaryPenmanship.ttf");
+        this.setFont(customFont);
         ImageIcon icon = new ImageIcon("./src/resources/icon.png");
         this.setIconImage(icon.getImage());
 
@@ -67,6 +70,20 @@ public class Window extends JFrame{
             case LOSE -> Screen.ScreenType.LOSE.toString();
         };
         cardLayout.show(mainPanel, screenID);
+    }
+    // Load custom font
+    public Font loadCustomFont(String fontPath) {
+        try {
+            // Load font from file
+            File fontFile = new File(fontPath);
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+            // Derive and return font with the desired size and style
+            return customFont.deriveFont(Font.PLAIN, 14);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+            // In case of failure, return a default font
+            return new Font(Font.SANS_SERIF, Font.PLAIN, 14);
+        }
     }
 }
 

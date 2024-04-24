@@ -31,6 +31,7 @@ public class InputAction {
 
             if (inputStatus == InputValidator.InputType.CORRECT_WORD) {
                 // win code
+                window.winScreen.setScore();
                 window.changeScreen(Screen.ScreenType.WIN);
             } else if (inputStatus == InputValidator.InputType.WRONG_WORD &&
                     PositionCounter.getRow() < LetterGrid.ROW ) {
