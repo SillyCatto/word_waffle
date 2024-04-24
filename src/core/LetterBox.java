@@ -41,15 +41,21 @@ public class LetterBox extends JLabel {
         // box text properties
         this.setText(" ");
         this.setHorizontalAlignment(JLabel.CENTER);
-        //changed the font to match the game theme
-        Font customFont= loadCustomFont("./src/resources/KGPrimaryPenmanship.ttf",Font.BOLD,40);
-        this.setFont(customFont);
-
-
 
         // box border properties
         border = BorderFactory.createLineBorder(defaultBorder, borderThickness);
         this.setBorder(border);
+
+        // load font file
+        // Todo for Rapi,
+        //  example usage given:
+//        Font KGPrimary = FontManager.loadFontFromTTF(
+//                "./src/resources/KGPrimaryPenmanship.ttf",
+//                Font.BOLD, 52f
+//        );
+
+        //change the font
+        this.setFont(KGPrimary);
     }
 
 

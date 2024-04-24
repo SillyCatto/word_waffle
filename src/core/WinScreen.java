@@ -1,71 +1,32 @@
 package core;
 
+import utils.PositionCounter;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import utils.PositionCounter;
 
 public class WinScreen extends Screen {
     private JButton replay;
-    private JButton goToMain;
-    private int score;
-    private ImageIcon backgroundImage;
+    private JLabel scoreLabel;
 
-    public WinScreen(Window window) {
+    public WinScreen(Window window){
         super(window);
         initialize();
         update();
-        // Load background image
-        backgroundImage = new ImageIcon("src/resources/Winning.gif");
     }
-
 
     @Override
     public void initialize() {
-        //setLayout(new BorderLayout()); // Set layout to BorderLayout to use the background
-
-        // Create components
         JLabel winLabel = new JLabel("You Won!");
+
+        scoreLabel = new JLabel();
+
         replay = new JButton("Replay?");
-        goToMain = new JButton("Go To Main Window");
 
-        winLabel.setOpaque(false);
-        replay.setOpaque(false);
-        goToMain.setOpaque(false);
-
-
-        // Calculate the score based on guesses
-        int guesses = PositionCounter.getRow();
-        switch (guesses) {
-            case 0:
-                score = 100;
-                break;
-            case 1:
-                score = 80;
-                break;
-            case 2:
-                score = 60;
-                break;
-            case 3:
-                score = 40;
-                break;
-            case 4:
-                score = 20;
-                break;
-            default:
-                score = 0; // Failure
-                break;
-        }
-        JLabel winScore = new JLabel("Your Score is " + score);
-
-        // Add components to the panel
-        add(winLabel, BorderLayout.NORTH);
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(replay);
-        buttonPanel.add(goToMain);
-        add(buttonPanel, BorderLayout.CENTER);
-        add(winScore, BorderLayout.SOUTH);
+        this.add(winLabel);
+        this.add(scoreLabel);
+        this.add(replay);
     }
 
     @Override
@@ -81,18 +42,21 @@ public class WinScreen extends Screen {
                 window.gameScreen.getWordListFile().generateWord();
             }
         });
-        goToMain.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                window.changeScreen(ScreenType.WELCOME);
-            }
-        });
-
     }
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Draw the background image
-        g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+
+    // calculate the score based on the number of tries
+    public void setScore() {
+        int guessLevel = PositionCounter.getRow();
+        int score = switch (guessLevel){
+          case 0 -> 100;
+          case 1 -> 80;
+          case 2 -> 60;
+          case 3 -> 40;
+          case 4 -> 20;
+          default -> throw new IllegalStateException("Illegal guess level: " +
+                  guessLevel);
+        };
+
+        this.scoreLabel.setText("Score: " + score);
     }
 }

@@ -1,5 +1,7 @@
 package core;
 
+import utils.Button;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,53 +9,25 @@ import java.awt.event.ActionListener;
 
 public class HelpScreen extends Screen {
     private JButton goBack;
-    public Image BackgroundImage;
+    private Image helpScreenImage;
     public HelpScreen(Window window) {
         super(window);
         initialize();
         update();
-        BackgroundImage = new ImageIcon("./src/resources/Help.png").getImage();
-
     }
 
     @Override
     public void initialize() {
-        setLayout(new BorderLayout());
+        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 0));
 
-        // Create a panel to hold the button
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonPanel.setOpaque(false); // Make the panel transparent
+        helpScreenImage = new ImageIcon("./src/resources/screen_help.png").getImage();
 
-        // Create the "Go back" button
-        goBack = new JButton("Go back");
+        ImageIcon crossIcon = new ImageIcon("./src/resources/btn_cross.png");
+        goBack = Button.createButton(crossIcon);
 
-        // Change the font of the button
-        Font buttonFont = new Font("KG Primary Penmanship", Font.PLAIN, 16);
-        goBack.setFont(buttonFont);
-
-        // Set preferred size for the button to make it smaller
-        goBack.setPreferredSize(new Dimension(100, 40)); // Adjust dimensions as needed
-
-
-        //adding color to the button
-
-
-
-        // Add ActionListener to the button
-        goBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                window.changeScreen(ScreenType.WELCOME);
-            }
-        });
-
-        // Add the button to the panel
-        buttonPanel.add(goBack);
-
-        // Add the button panel to the center of the HelpScreen
-        add(buttonPanel, BorderLayout.SOUTH);
+        this.add(goBack);
     }
-
 
     @Override
     public void update() {
@@ -64,11 +38,12 @@ public class HelpScreen extends Screen {
             }
         });
     }
+
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Draw the background image
-        g.drawImage(BackgroundImage, 0, 0, getWidth(), getHeight(), this);
+        super.paintComponent( g );
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(helpScreenImage, 0, 0, null);
     }
 
 }
