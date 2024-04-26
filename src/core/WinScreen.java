@@ -1,14 +1,19 @@
 package core;
 
+import utils.Button;
+import utils.FontManager;
 import utils.PositionCounter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WinScreen extends Screen {
-    private JButton replay;
+    private JButton replayBtn;
+    private JButton quitBtn;
     private JLabel scoreLabel;
+    private Image winImage;
 
     public WinScreen(Window window){
         super(window);
@@ -18,20 +23,49 @@ public class WinScreen extends Screen {
 
     @Override
     public void initialize() {
-        JLabel winLabel = new JLabel("You Won!");
-
         scoreLabel = new JLabel();
 
-        replay = new JButton("Replay?");
+        Font KGPrimary = FontManager.loadFont(
+                "./src/resources/KGPrimaryPenmanship.ttf",
+                Font.BOLD, 45f
+        );
 
-        this.add(winLabel);
-        this.add(scoreLabel);
-        this.add(replay);
+        scoreLabel.setFont(KGPrimary);
+
+        // Load background image
+        winImage = new ImageIcon("src/resources/screen_win.gif").getImage();
+
+        // create replay button
+        ImageIcon replayIcon = new ImageIcon("./src/resources/btn_replay.png");
+        replayBtn = Button.createButton(replayIcon);
+        replayBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // create quit button
+        ImageIcon quitIcon = new ImageIcon("./src/resources/btn_quit.png");
+        quitBtn = Button.createButton(quitIcon);
+        quitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // set layout to GridBagLayout for proper vertical alignment
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(235, 0, 0, 0);
+        add(scoreLabel, gbc);
+
+        gbc.gridy++;
+        gbc.insets = new Insets(85, 0, 0, 0);
+        add(replayBtn, gbc);
+
+        gbc.gridy++;
+        gbc.insets = new Insets(25, 0, 0, 0);
+        add(quitBtn, gbc);
     }
 
     @Override
     public void update() {
-        replay.addActionListener(new ActionListener() {
+        replayBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 // go back to game screen
@@ -40,6 +74,14 @@ public class WinScreen extends Screen {
                 window.gameScreen.reset(window.gameScreen.getGrid());
                 // generate new word
                 window.gameScreen.getWordListFile().generateWord();
+            }
+        });
+
+        quitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // release all resources and close the app
+                window.dispose();
             }
         });
     }
@@ -57,6 +99,13 @@ public class WinScreen extends Screen {
                   guessLevel);
         };
 
-        this.scoreLabel.setText("Score: " + score);
+        this.scoreLabel.setText(String.valueOf(score));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Draw the background image
+        g.drawImage(winImage, 0, 0, getWidth(), getHeight(), this);
     }
 }

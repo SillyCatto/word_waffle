@@ -1,10 +1,10 @@
 package core;
 
+import utils.FontManager;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class LetterBox extends JLabel {
     // color - not in word
@@ -13,13 +13,15 @@ public class LetterBox extends JLabel {
     // color - in word, wrong position
     private final static Color yellow = new Color(198, 180, 102);
 
-
     // color - in word, in correct position
     private final static Color green = new Color(121, 167, 107);
 
-    private final static Color defaultBorder = new Color(212, 214, 218);
+    private final static Color chocolate = new Color(96, 56, 20);
 
-    private final int borderThickness = 4;
+    private final static Color defaultBoxColor = new Color(255, 216, 129);
+    private final static Color defaultBorder = new Color(96, 56, 20);
+
+    private final int borderThickness = 2;
 
     private Border border;
 
@@ -34,8 +36,8 @@ public class LetterBox extends JLabel {
     public LetterBox(){
         // init box
         this.setSize(64, 64);
-        this.setBackground(Color.WHITE);
-        this.setForeground(Color.BLACK);
+        this.setBackground(defaultBoxColor);
+        this.setForeground(chocolate);
         this.setOpaque(true);
 
         // box text properties
@@ -49,10 +51,10 @@ public class LetterBox extends JLabel {
         // load font file
         // Todo for Rapi,
         //  example usage given:
-//        Font KGPrimary = FontManager.loadFontFromTTF(
-//                "./src/resources/KGPrimaryPenmanship.ttf",
-//                Font.BOLD, 52f
-//        );
+        Font KGPrimary = FontManager.loadFont(
+                "./src/resources/KGPrimaryPenmanship.ttf",
+                Font.BOLD, 52f
+        );
 
         //change the font
         this.setFont(KGPrimary);
@@ -64,31 +66,31 @@ public class LetterBox extends JLabel {
         switch (type){
             //incorrect: GRAY
             case GRAY:
-                this.border = BorderFactory.createLineBorder(gray, borderThickness);
-                this.setBorder(border);
+//                this.border = BorderFactory.createLineBorder(gray, borderThickness);
+//                this.setBorder(border);
                 this.setBackground(gray);
                 break;
 
             //not in right position: YELLOW
             case YELLOW:
-                this.border = BorderFactory.createLineBorder(yellow, borderThickness);
-                this.setBorder(border);
+//                this.border = BorderFactory.createLineBorder(yellow, borderThickness);
+//                this.setBorder(border);
                 this.setBackground(yellow);
                 break;
 
             //correct: GREEN
             case GREEN:
-                this.border = BorderFactory.createLineBorder(green, borderThickness);
-                this.setBorder(border);
+//                this.border = BorderFactory.createLineBorder(green, borderThickness);
+//                this.setBorder(border);
                 this.setBackground(green);
                 break;
 
-            // set box color
+            // set default box color
             case DEFAULT:
-                this.border = BorderFactory.createLineBorder(defaultBorder, borderThickness);
-                this.setBorder(border);
-                this.setBackground(Color.WHITE);
-                this.setForeground(Color.BLACK);
+//                this.border = BorderFactory.createLineBorder(defaultBorder, borderThickness);
+//                this.setBorder(border);
+                this.setBackground(defaultBoxColor);
+                this.setForeground(chocolate);
                 break;
 
             default:
@@ -104,23 +106,5 @@ public class LetterBox extends JLabel {
         this.setText(inputLetter);
         this.setColor(type);
     }
-
-    //there was a stackoverflowerror, so added like this
-
-    // Load custom font with a specified style and size
-    public Font loadCustomFont(String fontPath, int style, int size) {
-        try {
-            // Load font from file
-            File fontFile = new File(fontPath);
-            Font baseFont = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-            // Set the desired style and size
-            return baseFont.deriveFont(style, size);
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-            // In case of failure, return a default font
-            return new Font(Font.SANS_SERIF, Font.PLAIN, 14);
-        }
-    }
-
 }
 

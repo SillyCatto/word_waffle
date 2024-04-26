@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HelpScreen extends Screen {
-    private JButton goBack;
+    private JButton goBackBtn;
     private Image helpScreenImage;
     public HelpScreen(Window window) {
         super(window);
@@ -24,14 +24,14 @@ public class HelpScreen extends Screen {
         helpScreenImage = new ImageIcon("./src/resources/screen_help.png").getImage();
 
         ImageIcon crossIcon = new ImageIcon("./src/resources/btn_cross.png");
-        goBack = Button.createButton(crossIcon);
+        goBackBtn = Button.createButton(crossIcon);
 
-        this.add(goBack);
+        this.add(goBackBtn);
     }
 
     @Override
     public void update() {
-        goBack.addActionListener(new ActionListener() {
+        goBackBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 window.changeScreen(ScreenType.WELCOME);

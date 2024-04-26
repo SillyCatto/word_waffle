@@ -2,7 +2,8 @@ package core;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Window extends JFrame{
     private final JPanel mainPanel;
