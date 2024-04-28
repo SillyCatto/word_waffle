@@ -21,10 +21,6 @@ public class LetterBox extends JLabel {
     private final static Color defaultBoxColor = new Color(255, 216, 129);
     private final static Color defaultBorder = new Color(96, 56, 20);
 
-    private final int borderThickness = 2;
-
-    private Border border;
-
     public enum BoxType {
         GREEN,
         YELLOW,
@@ -45,7 +41,7 @@ public class LetterBox extends JLabel {
         this.setHorizontalAlignment(JLabel.CENTER);
 
         // box border properties
-        border = BorderFactory.createLineBorder(defaultBorder, borderThickness);
+        Border border = BorderFactory.createLineBorder(defaultBorder, 2);
         this.setBorder(border);
 
         // load font file
@@ -66,29 +62,21 @@ public class LetterBox extends JLabel {
         switch (type){
             //incorrect: GRAY
             case GRAY:
-//                this.border = BorderFactory.createLineBorder(gray, borderThickness);
-//                this.setBorder(border);
                 this.setBackground(gray);
                 break;
 
             //not in right position: YELLOW
             case YELLOW:
-//                this.border = BorderFactory.createLineBorder(yellow, borderThickness);
-//                this.setBorder(border);
                 this.setBackground(yellow);
                 break;
 
             //correct: GREEN
             case GREEN:
-//                this.border = BorderFactory.createLineBorder(green, borderThickness);
-//                this.setBorder(border);
                 this.setBackground(green);
                 break;
 
             // set default box color
             case DEFAULT:
-//                this.border = BorderFactory.createLineBorder(defaultBorder, borderThickness);
-//                this.setBorder(border);
                 this.setBackground(defaultBoxColor);
                 this.setForeground(chocolate);
                 break;
