@@ -3,12 +3,14 @@ package core;
 import utils.PositionCounter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WinScreen extends Screen {
     private JButton replay;
     private JLabel scoreLabel;
+    private JLabel background;
 
     public WinScreen(Window window){
         super(window);
@@ -18,15 +20,27 @@ public class WinScreen extends Screen {
 
     @Override
     public void initialize() {
+        // Load background image
+        ImageIcon backgroundImage = new ImageIcon("src/resources/Winning.gif");
+        background = new JLabel(backgroundImage);
+        background.setLayout(new BorderLayout());
+
         JLabel winLabel = new JLabel("You Won!");
-
         scoreLabel = new JLabel();
-
         replay = new JButton("Replay?");
 
-        this.add(winLabel);
-        this.add(scoreLabel);
-        this.add(replay);
+        // Create a panel to hold the winLabel, scoreLabel, and replay button
+        JPanel panel = new JPanel(new FlowLayout());
+        panel.setOpaque(false); // Make the panel transparent
+        panel.add(winLabel);
+        panel.add(scoreLabel);
+        panel.add(replay);
+
+        // Add the panel to the center of the background label
+        background.add(panel, BorderLayout.CENTER);
+
+        // Add the background label to the WinScreen
+        this.add(background);
     }
 
     @Override

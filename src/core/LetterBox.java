@@ -49,10 +49,9 @@ public class LetterBox extends JLabel {
         // load font file
         // Todo for Rapi,
         //  example usage given:
-//        Font KGPrimary = FontManager.loadFontFromTTF(
-//                "./src/resources/KGPrimaryPenmanship.ttf",
-//                Font.BOLD, 52f
-//        );
+
+        FontManager fontManager = new FontManager();
+        Font KGPrimary = fontManager.loadFontFromTTF("./src/resources/KGPrimaryPenmanship.ttf", Font.BOLD, 52f);
 
         //change the font
         this.setFont(KGPrimary);
