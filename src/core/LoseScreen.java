@@ -1,6 +1,7 @@
 package core;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +9,7 @@ public class LoseScreen extends Screen {
     private JButton replay;
     private JButton goToMain;
     protected JLabel answerLabel;
+    private JLabel loseBg;
 
     public LoseScreen(Window window){
         super(window);
@@ -18,17 +20,27 @@ public class LoseScreen extends Screen {
 
     @Override
     public void initialize() {
+        ImageIcon backgroundImage = new ImageIcon("src/resources/LoseScreen.gif");
+        loseBg = new JLabel(backgroundImage);
+        loseBg.setLayout(new BorderLayout(0,0));
         JLabel winLabel = new JLabel("You Lost :(");
-        JLabel LosingScore=new JLabel("Your Score is 0");
+
         answerLabel = new JLabel();
         replay = new JButton("Replay?");
         goToMain=new JButton("Go To Main Menu");
 
-        this.add(answerLabel);
-        this.add(winLabel);
-        this.add(replay);
-        this.add(goToMain);
-        this.add(LosingScore);
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 0));
+
+        panel.setOpaque(false);
+        panel.add(answerLabel);
+        panel.add(replay);
+        panel.add(goToMain);
+
+        loseBg.add(panel, BorderLayout.CENTER);
+
+        this.add(loseBg);
+
 
     }
 
