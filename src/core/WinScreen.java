@@ -31,6 +31,7 @@ public class WinScreen extends Screen {
         );
 
         scoreLabel.setFont(KGPrimary);
+        scoreLabel.setForeground(new Color(96, 56, 20));
 
         // Load background image
         winImage = new ImageIcon("src/resources/screen_win.gif").getImage();
@@ -51,11 +52,11 @@ public class WinScreen extends Screen {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(235, 0, 0, 0);
+        gbc.insets = new Insets(245, 0, 0, 0);
         add(scoreLabel, gbc);
 
         gbc.gridy++;
-        gbc.insets = new Insets(85, 0, 0, 0);
+        gbc.insets = new Insets(75, 0, 0, 0);
         add(replayBtn, gbc);
 
         gbc.gridy++;

@@ -24,10 +24,7 @@ public class LoseScreen extends Screen {
 
     @Override
     public void initialize() {
-
-
-
-        loseImage = new ImageIcon("src/resources/lose_screen.gif").getImage();
+        loseImage = new ImageIcon("src/resources/screen_lose.gif").getImage();
 
         ImageIcon replayIcon = new ImageIcon("./src/resources/btn_replay.png");
         replayBtn = Button.createButton(replayIcon);
@@ -40,22 +37,19 @@ public class LoseScreen extends Screen {
         //to show the correct answer
         Font KGPrimary = FontManager.loadFont(
                 "./src/resources/KGPrimaryPenmanship.ttf",
-                Font.BOLD, 25f
+                Font.BOLD, 45f
         );
         answerLabel = new JLabel();
         answerLabel.setFont(KGPrimary);
+        answerLabel.setForeground(new Color(96, 56, 20));
 
-
-        this.add(replayBtn);
-        this.add(quitBtn);
-        this.add(answerLabel);
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        //gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(350, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(300, 0, 0, 0);
         add(answerLabel, gbc);
 
         gbc.gridy++;
@@ -63,9 +57,8 @@ public class LoseScreen extends Screen {
         add(replayBtn, gbc);
 
         gbc.gridy++;
-        gbc.insets = new Insets(20, 0, 0, 0);
+        gbc.insets = new Insets(25, 0, 0, 0);
         add(quitBtn, gbc);
-
     }
 
     @Override
@@ -97,5 +90,3 @@ public class LoseScreen extends Screen {
         g.drawImage(loseImage, 0, 0, getWidth(), getHeight(), this);
     }
 }
-
-

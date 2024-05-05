@@ -5,6 +5,7 @@ import utils.PositionCounter;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class GameScreen extends Screen{
@@ -16,6 +17,9 @@ public class GameScreen extends Screen{
     private InputAction inputAction;
 
     private WordPicker wordListFile;
+    private JLabel warningLabel;
+
+    private Timer warningTimer;
 
     private Image gameScreenBackground;
 
@@ -30,29 +34,51 @@ public class GameScreen extends Screen{
         //background for game screen
         gameScreenBackground = new ImageIcon("./src/resources/screen_game.png").getImage();
 
-        // offset panel for gap
-        JPanel gridOffset = new JPanel();
+        // offset panel for gap from top
+        JPanel gridOffset1 = new JPanel();
         //height changed by RapiBuoy to look better
-        gridOffset.setPreferredSize(new Dimension(550, 140));
-        gridOffset.setOpaque(false);
+        gridOffset1.setPreferredSize(new Dimension(550, 140));
+        gridOffset1.setOpaque(false);
+
+        // offset panel for gap between grid and warning
+        JPanel gridOffset2 = new JPanel();
+        gridOffset2.setPreferredSize(new Dimension(550, 40));
+        gridOffset2.setOpaque(false);
 
         // create grid panel
         grid = new LetterGrid();
         grid.setPreferredSize(new Dimension(320, 320));
         grid.setOpaque(false);
 
-        this.add(gridOffset);
-        this.add(grid);
-        this.setBackground(Color.darkGray);
+        warningLabel = new JLabel("Word is too short!", SwingConstants.CENTER);
+        warningLabel.setPreferredSize(new Dimension(550, 130));
+        warningLabel.setFont(new Font("Serif", Font.BOLD, 30));
+        warningLabel.setForeground(Color.BLACK);
+        warningLabel.setVisible(false); // warningLabel initially invisible
 
         // init input map and action map
         inputAction = new InputAction(window, this);
         inputMap = this.grid.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         actionMap = this.grid.getActionMap();
 
+        // warning timeout timer
+        warningTimer = new Timer(2500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                warningLabel.setVisible(false);
+            }
+        });
+
         // init word picker and pick a random word
         this.wordListFile = new WordPicker("./src/resources/wordlist.txt");
         this.wordListFile.generateWord();
+
+        // add components
+        this.add(gridOffset1);
+        this.add(grid);
+        this.add(gridOffset2);
+        this.add(warningLabel);
+        this.setBackground(Color.darkGray);
     }
 
     public LetterGrid getGrid() {
@@ -112,6 +138,12 @@ public class GameScreen extends Screen{
         // reset position pointer
         PositionCounter.setRow(0);
         PositionCounter.setColumn(0);
+    }
+
+    // show the warning
+    public void showWarning() {
+        warningLabel.setVisible(true);
+        warningTimer.restart(); // Start or restart the timer
     }
 
     //draw the background image
