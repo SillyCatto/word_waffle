@@ -8,7 +8,7 @@ public class InputValidator {
         WRONG_WORD,
     }
     public static InputType checkInput(LetterBox[] gridRow, String currentAnswer)
-        throws NotEnoughLettersException {
+            throws NotEnoughLettersException {
 
         InputType status;
         int correctLetterCount = 0;
@@ -42,8 +42,6 @@ public class InputValidator {
                     letterBox.updateBoxColor(LetterBox.BoxType.GRAY);
                 }
             }
-
-
         } else { // word is short
             throw new NotEnoughLettersException("Word is too short!");
         }

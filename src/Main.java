@@ -1,4 +1,3 @@
-import core.Screen;
 import core.Window;
 
 import javax.swing.*;

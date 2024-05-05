@@ -75,8 +75,7 @@ public class WelcomeScreen extends Screen {
 
     // add background image to welcome screen
     @Override
-    public void paintComponent( Graphics g )
-    {
+    protected void paintComponent( Graphics g ) {
         super.paintComponent( g );
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(background, 0, 0, null);

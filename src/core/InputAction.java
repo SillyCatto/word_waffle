@@ -31,12 +31,13 @@ public class InputAction {
 
             if (inputStatus == InputValidator.InputType.CORRECT_WORD) {
                 // win code
+                window.winScreen.setScore();
                 window.changeScreen(Screen.ScreenType.WIN);
             } else if (inputStatus == InputValidator.InputType.WRONG_WORD &&
                     PositionCounter.getRow() < LetterGrid.ROW ) {
                 if (PositionCounter.getRow() == 4) { // lose
                     // fetch the current answer and set it to label
-                    window.loseScreen.answerLabel.setText("Answer is: " + WordPicker.getAnswer());
+                    window.loseScreen.answerLabel.setText(WordPicker.getAnswer());
                     window.changeScreen(Screen.ScreenType.LOSE);
                 } else {
                     // wrong word but still have chance
@@ -45,7 +46,8 @@ public class InputAction {
                 }
             }
         } catch (NotEnoughLettersException e) {
-            System.out.println("Word is too short!");
+            System.err.println("Word is too short!");
+            window.gameScreen.showWarning();
         }
     }
 

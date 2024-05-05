@@ -1,5 +1,7 @@
 package core;
 
+import utils.FontManager;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -11,15 +13,13 @@ public class LetterBox extends JLabel {
     // color - in word, wrong position
     private final static Color yellow = new Color(198, 180, 102);
 
-
     // color - in word, in correct position
     private final static Color green = new Color(121, 167, 107);
 
-    private final static Color defaultBorder = new Color(212, 214, 218);
+    private final static Color chocolate = new Color(96, 56, 20);
 
-    private final int borderThickness = 4;
-
-    private Border border;
+    private final static Color defaultBoxColor = new Color(255, 216, 129);
+    private final static Color defaultBorder = new Color(96, 56, 20);
 
     public enum BoxType {
         GREEN,
@@ -32,19 +32,28 @@ public class LetterBox extends JLabel {
     public LetterBox(){
         // init box
         this.setSize(64, 64);
-        this.setBackground(Color.WHITE);
-        this.setForeground(Color.BLACK);
+        this.setBackground(defaultBoxColor);
+        this.setForeground(chocolate);
         this.setOpaque(true);
 
         // box text properties
         this.setText(" ");
         this.setHorizontalAlignment(JLabel.CENTER);
-        this.setVerticalAlignment(JLabel.CENTER);
-        this.setFont(new Font("Serif", Font.BOLD, 30));
 
         // box border properties
-        border = BorderFactory.createLineBorder(defaultBorder, borderThickness);
+        Border border = BorderFactory.createLineBorder(defaultBorder, 2);
         this.setBorder(border);
+
+        // load font file
+        // Todo for Rapi,
+        //  example usage given:
+        Font KGPrimary = FontManager.loadFont(
+                "./src/resources/KGPrimaryPenmanship.ttf",
+                Font.BOLD, 52f
+        );
+
+        //change the font
+        this.setFont(KGPrimary);
     }
 
 
@@ -53,31 +62,23 @@ public class LetterBox extends JLabel {
         switch (type){
             //incorrect: GRAY
             case GRAY:
-                this.border = BorderFactory.createLineBorder(gray, borderThickness);
-                this.setBorder(border);
                 this.setBackground(gray);
                 break;
 
             //not in right position: YELLOW
             case YELLOW:
-                this.border = BorderFactory.createLineBorder(yellow, borderThickness);
-                this.setBorder(border);
                 this.setBackground(yellow);
                 break;
 
             //correct: GREEN
             case GREEN:
-                this.border = BorderFactory.createLineBorder(green, borderThickness);
-                this.setBorder(border);
                 this.setBackground(green);
                 break;
 
-            // set box color
+            // set default box color
             case DEFAULT:
-                this.border = BorderFactory.createLineBorder(defaultBorder, borderThickness);
-                this.setBorder(border);
-                this.setBackground(Color.WHITE);
-                this.setForeground(Color.BLACK);
+                this.setBackground(defaultBoxColor);
+                this.setForeground(chocolate);
                 break;
 
             default:
@@ -94,3 +95,4 @@ public class LetterBox extends JLabel {
         this.setColor(type);
     }
 }
+
