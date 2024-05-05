@@ -25,6 +25,15 @@ public class Window extends JFrame{
         ImageIcon icon = new ImageIcon("./src/resources/icon.png");
         this.setIconImage(icon.getImage());
 
+        // Create custom cursor and set custom cursor to the JFrame
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image cursorImage = toolkit.getImage("./src/resources/cursor.png");
+        Image scaledCursorImg = cursorImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+
+        Cursor customCursor = toolkit.createCustomCursor(scaledCursorImg,
+                new Point(0, 0), "Cursor");
+        setCursor(customCursor);
+
         // initialize the screens
         welcomeScreen = new WelcomeScreen(this);
         gameScreen = new GameScreen(this);

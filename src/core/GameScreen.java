@@ -50,10 +50,8 @@ public class GameScreen extends Screen{
         grid.setPreferredSize(new Dimension(320, 320));
         grid.setOpaque(false);
 
-        warningLabel = new JLabel("Word is too short!", SwingConstants.CENTER);
+        warningLabel = new JLabel(new ImageIcon("./src/resources/warning.png"));
         warningLabel.setPreferredSize(new Dimension(550, 130));
-        warningLabel.setFont(new Font("Serif", Font.BOLD, 30));
-        warningLabel.setForeground(Color.BLACK);
         warningLabel.setVisible(false); // warningLabel initially invisible
 
         // init input map and action map
