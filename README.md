@@ -1,3 +1,10 @@
 ![title](./src/resources/title.png)
 
-Word guessing game in Java inspired by Wordle for OOP-1 course final project
+---
+**A word guessing game in Java inspired by Wordle**
+
+## Overview
+
+---
+This project was made as a part of the Object Oriented Programming-1 course
+to learn about OOP concepts and clean code guidelines through a practical approach.
