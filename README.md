@@ -21,4 +21,4 @@ Alternatively, you may download the pre-built `.jar` file from the [releases pag
 
 ## Acknowledgements
 
-Thanks a lot to @musaddiq-rafi for being a part of this project as a teammate
+Thanks a lot to [@musaddiq-rafi](https://github.com/musaddiq-rafi) for being a part of this project as a teammate
