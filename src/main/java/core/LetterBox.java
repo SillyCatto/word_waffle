@@ -19,7 +19,9 @@ public class LetterBox extends JLabel {
     private final static Color chocolate = new Color(96, 56, 20);
 
     private final static Color defaultBoxColor = new Color(255, 216, 129);
-    private final static Color defaultBorder = new Color(96, 56, 20);
+    private final static Color borderColor = new Color(96, 56, 20);
+
+    private BoxType currentBoxType;
 
     public enum BoxType {
         GREEN,
@@ -41,14 +43,12 @@ public class LetterBox extends JLabel {
         this.setHorizontalAlignment(JLabel.CENTER);
 
         // box border properties
-        Border border = BorderFactory.createLineBorder(defaultBorder, 2);
+        Border border = BorderFactory.createLineBorder(borderColor, 2);
         this.setBorder(border);
+        this.currentBoxType = BoxType.DEFAULT;
 
-        // load font file
-        // Todo for Rapi,
-        //  example usage given:
         Font KGPrimary = FontManager.loadFont(
-                "./src/resources/KGPrimaryPenmanship.ttf",
+                "./src/main/java/resources/KGPrimaryPenmanship.ttf",
                 Font.BOLD, 52f
         );
 
@@ -59,6 +59,7 @@ public class LetterBox extends JLabel {
 
     public void setColor(BoxType type) {
         this.setForeground(Color.WHITE);
+        this.currentBoxType = type;
         switch (type){
             //incorrect: GRAY
             case GRAY:
@@ -93,6 +94,11 @@ public class LetterBox extends JLabel {
     public void clear(BoxType type, String inputLetter){
         this.setText(inputLetter);
         this.setColor(type);
+    }
+
+    // get the current BoxType for testing purposes
+    public BoxType getCurrentBoxType() {
+        return currentBoxType;
     }
 }
 

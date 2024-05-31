@@ -20,4 +20,9 @@ public class PositionCounter {
     public static void setColumn(int c){
         PositionCounter.column = c;
     }
+
+    public static void reset(){
+        PositionCounter.row = 0;
+        PositionCounter.column = 0;
+    }
 }
