@@ -10,6 +10,7 @@ public class InputAction {
         this.window = window;
         this.gameScreen = gameScreen;
     }
+
     public void typeLetter(char ch){
         // if there are empty boxes in current row
         if (PositionCounter.getColumn() < LetterGrid.COLUMN){
@@ -29,8 +30,7 @@ public class InputAction {
                     InputValidator.checkInput(gameScreen.getCurrentRow(),
                             WordPicker.getAnswer());
 
-            if (inputStatus == InputValidator.InputType.CORRECT_WORD) {
-                // win code
+            if (inputStatus == InputValidator.InputType.CORRECT_WORD) { // win
                 window.winScreen.setScore();
                 window.changeScreen(Screen.ScreenType.WIN);
             } else if (inputStatus == InputValidator.InputType.WRONG_WORD &&

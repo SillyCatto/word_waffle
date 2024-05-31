@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AboutScreen extends Screen {
-    private JButton goBack;
-    private Image creditImage;
+    private JButton goBackBtn;
+    private Image aboutScreenBg;
     public AboutScreen(Window window) {
         super(window);
         initialize();
@@ -21,17 +21,17 @@ public class AboutScreen extends Screen {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 0));
 
-        creditImage = new ImageIcon("./src/resources/screen_about.png").getImage();
+        aboutScreenBg = new ImageIcon("./src/main/java/resources/screen_about.png").getImage();
 
-        ImageIcon crossIcon = new ImageIcon("./src/resources/btn_cross.png");
-        goBack = Button.createButton(crossIcon);
+        ImageIcon crossIcon = new ImageIcon("./src/main/java/resources/btn_cross.png");
+        goBackBtn = Button.createButton(crossIcon);
 
-        this.add(goBack);
+        this.add(goBackBtn);
     }
 
     @Override
     public void update() {
-        goBack.addActionListener(new ActionListener() {
+        goBackBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 window.changeScreen(ScreenType.WELCOME);
@@ -41,8 +41,7 @@ public class AboutScreen extends Screen {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent( g );
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(creditImage, 0, 0, null);
+        g.drawImage(aboutScreenBg, 0, 0, null);
     }
 
 }

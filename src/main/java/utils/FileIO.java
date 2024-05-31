@@ -7,10 +7,13 @@ public class FileIO {
         READER,
         WRITER
     }
-    private String out = null;
+
+    private String currentLine = null;
     private BufferedReader fileReader = null;
     private BufferedWriter fileWriter = null;
     private String filePath = null;
+
+
     public FileIO(File fileHandlerType, String filePath){
         try {
             if (fileHandlerType == File.READER){
@@ -24,23 +27,18 @@ public class FileIO {
             System.err.println("File not found in: " + filePath);
             e.printStackTrace();
         } catch (IOException e){
-            System.err.println("Error during writing to file");
+            System.err.println("Error reading file: " + filePath);
             e.printStackTrace();
         }
     }
 
     public String readLine() throws IOException {
         if (fileReader != null){
-            out = fileReader.readLine();
+            currentLine = fileReader.readLine();
         }
-        return out;
+        return currentLine;
     }
 
-    public void writeLine(String content) throws IOException {
-        if (fileWriter != null){
-            fileWriter.write(content);
-        }
-    }
 
     public void close(){
         try{

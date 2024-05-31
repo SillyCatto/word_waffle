@@ -9,19 +9,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class GameScreen extends Screen{
-    private InputMap inputMap;
-    private ActionMap actionMap;
-
     private LetterGrid grid;
 
+    private WordPicker wordListFile;
+    
+    private InputMap inputMap;
+    private ActionMap actionMap;
     private InputAction inputAction;
 
-    private WordPicker wordListFile;
-    private JLabel warningLabel;
 
+    private JLabel warningLabel;
     private Timer warningTimer;
 
-    private Image gameScreenBackground;
+    private Image gameScreenBg;
 
     public GameScreen(Window window){
         super(window);
@@ -32,7 +32,7 @@ public class GameScreen extends Screen{
     @Override
     public void initialize() {
         //background for game screen
-        gameScreenBackground = new ImageIcon("./src/resources/screen_game.png").getImage();
+        gameScreenBg = new ImageIcon("./src/main/java/resources/screen_game.png").getImage();
 
         // offset panel for gap from top
         JPanel gridOffset1 = new JPanel();
@@ -50,7 +50,7 @@ public class GameScreen extends Screen{
         grid.setPreferredSize(new Dimension(320, 320));
         grid.setOpaque(false);
 
-        warningLabel = new JLabel(new ImageIcon("./src/resources/warning.png"));
+        warningLabel = new JLabel(new ImageIcon("./src/main/java/resources/warning.png"));
         warningLabel.setPreferredSize(new Dimension(550, 130));
         warningLabel.setVisible(false); // warningLabel initially invisible
 
@@ -68,7 +68,7 @@ public class GameScreen extends Screen{
         });
 
         // init word picker and pick a random word
-        this.wordListFile = new WordPicker("./src/resources/wordlist.txt");
+        this.wordListFile = new WordPicker("./src/main/java/resources/wordlist.txt");
         this.wordListFile.generateWord();
 
         // add components
@@ -100,7 +100,9 @@ public class GameScreen extends Screen{
 
     @Override
     public void update() {
-        // handle letter key press
+        // create inputMap and actionMap for the keys
+
+        // handle letter keys
         for (char c = 'a'; c <= 'z'; c++) {
             final char key = c;
             this.inputMap.put(KeyStroke.getKeyStroke(key), Character.toString(key));
@@ -112,7 +114,7 @@ public class GameScreen extends Screen{
         }
 
         // handle enter key
-        this.inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Enter");
+        this.inputMap.put(KeyStroke.getKeyStroke((char) KeyEvent.VK_ENTER), "Enter");
         actionMap.put("Enter", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 inputAction.pressEnter();
@@ -120,7 +122,7 @@ public class GameScreen extends Screen{
         });
 
         // handle backspace key
-        this.inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "Backspace");
+        this.inputMap.put(KeyStroke.getKeyStroke((char) KeyEvent.VK_BACK_SPACE), "Backspace");
         actionMap.put("Backspace", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 inputAction.pressBackspace();
@@ -132,7 +134,6 @@ public class GameScreen extends Screen{
     public void reset(LetterGrid grid){
         // clear the grid
         grid.reset();
-
         // reset position pointer
         PositionCounter.reset();
     }
@@ -143,11 +144,9 @@ public class GameScreen extends Screen{
         warningTimer.restart(); // Start or restart the timer
     }
 
-    //draw the background image
     @Override
     protected void paintComponent( Graphics g ) {
         super.paintComponent( g );
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(gameScreenBackground, 0, 0, null);
+        g.drawImage(gameScreenBg, 0, 0, null);
     }
 }

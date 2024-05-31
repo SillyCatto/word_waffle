@@ -17,9 +17,7 @@ public class LetterBox extends JLabel {
     private final static Color green = new Color(121, 167, 107);
 
     private final static Color chocolate = new Color(96, 56, 20);
-
     private final static Color defaultBoxColor = new Color(255, 216, 129);
-    private final static Color borderColor = new Color(96, 56, 20);
 
     private BoxType currentBoxType;
 
@@ -43,23 +41,24 @@ public class LetterBox extends JLabel {
         this.setHorizontalAlignment(JLabel.CENTER);
 
         // box border properties
-        Border border = BorderFactory.createLineBorder(borderColor, 2);
+        Border border = BorderFactory.createLineBorder(chocolate, 2);
         this.setBorder(border);
-        this.currentBoxType = BoxType.DEFAULT;
 
+        //change the font
         Font KGPrimary = FontManager.loadFont(
                 "./src/main/java/resources/KGPrimaryPenmanship.ttf",
                 Font.BOLD, 52f
         );
-
-        //change the font
         this.setFont(KGPrimary);
+
+        this.currentBoxType = BoxType.DEFAULT;
     }
 
 
     public void setColor(BoxType type) {
         this.setForeground(Color.WHITE);
         this.currentBoxType = type;
+
         switch (type){
             //incorrect: GRAY
             case GRAY:
@@ -83,7 +82,7 @@ public class LetterBox extends JLabel {
                 break;
 
             default:
-                System.err.println("Invalid Box Type");
+                System.err.println("Invalid Box Type: " + type);
         }
     }
 
@@ -91,9 +90,9 @@ public class LetterBox extends JLabel {
         this.setColor(type);
     }
 
-    public void clear(BoxType type, String inputLetter){
-        this.setText(inputLetter);
-        this.setColor(type);
+    public void clear(){
+        this.setText(" ");
+        this.setColor(LetterBox.BoxType.DEFAULT);
     }
 
     // get the current BoxType for testing purposes

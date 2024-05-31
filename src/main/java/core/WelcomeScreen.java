@@ -11,7 +11,7 @@ public class WelcomeScreen extends Screen {
     private JButton playBtn;
     private JButton helpBtn;
     private JButton aboutBtn;
-    private Image background;
+    private Image welcomeScreenBg;
 
     public WelcomeScreen(Window window){
         super(window);
@@ -22,15 +22,15 @@ public class WelcomeScreen extends Screen {
 
     @Override
     public void initialize() {
-        background = new ImageIcon("./src/resources/screen_title.png").getImage();
+        welcomeScreenBg = new ImageIcon("./src/main/java/resources/screen_title.png").getImage();
 
-        ImageIcon playIcon = new ImageIcon("./src/resources/btn_play.png");
+        ImageIcon playIcon = new ImageIcon("./src/main/java/resources/btn_play.png");
         playBtn = Button.createButton(playIcon);
 
-        ImageIcon helpIcon = new ImageIcon("./src/resources/btn_help.png");
+        ImageIcon helpIcon = new ImageIcon("./src/main/java/resources/btn_help.png");
         helpBtn = Button.createButton(helpIcon);
 
-        ImageIcon aboutIcon = new ImageIcon("./src/resources/btn_about.png");
+        ImageIcon aboutIcon = new ImageIcon("./src/main/java/resources/btn_about.png");
         aboutBtn = Button.createButton(aboutIcon);
 
 
@@ -47,7 +47,7 @@ public class WelcomeScreen extends Screen {
     @Override
     public void update() {
         //handle button clicks
-        // play button
+
         playBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -55,7 +55,6 @@ public class WelcomeScreen extends Screen {
             }
         });
 
-        // help button
         helpBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -63,7 +62,6 @@ public class WelcomeScreen extends Screen {
             }
         });
 
-        // about button
         aboutBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -77,8 +75,7 @@ public class WelcomeScreen extends Screen {
     @Override
     protected void paintComponent( Graphics g ) {
         super.paintComponent( g );
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(background, 0, 0, null);
+        g.drawImage(welcomeScreenBg, 0, 0, null);
     }
 
 }
