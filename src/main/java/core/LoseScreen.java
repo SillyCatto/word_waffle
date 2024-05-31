@@ -24,19 +24,19 @@ public class LoseScreen extends Screen {
 
     @Override
     public void initialize() {
-        loseImage = new ImageIcon("src/resources/screen_lose.gif").getImage();
+        loseImage = new ImageIcon("./src/main/java/resources/screen_lose.gif").getImage();
 
-        ImageIcon replayIcon = new ImageIcon("./src/resources/btn_replay.png");
+        ImageIcon replayIcon = new ImageIcon("./src/main/java/resources/btn_replay.png");
         replayBtn = Button.createButton(replayIcon);
         replayBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        ImageIcon quitIcon = new ImageIcon("./src/resources/btn_quit.png");
+        ImageIcon quitIcon = new ImageIcon("./src/main/java/resources/btn_quit.png");
         quitBtn = Button.createButton(quitIcon);
         quitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //to show the correct answer
         Font KGPrimary = FontManager.loadFont(
-                "./src/resources/KGPrimaryPenmanship.ttf",
+                "./src/main/java/resources/KGPrimaryPenmanship.ttf",
                 Font.BOLD, 45f
         );
         answerLabel = new JLabel();

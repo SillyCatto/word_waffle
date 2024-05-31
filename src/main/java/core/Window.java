@@ -22,12 +22,12 @@ public class Window extends JFrame{
         this.setSize(width, height);
         this.setTitle("Word Waffle");
 
-        ImageIcon icon = new ImageIcon("./src/resources/icon.png");
+        ImageIcon icon = new ImageIcon("./src/main/java/resources/icon.png");
         this.setIconImage(icon.getImage());
 
         // Create custom cursor and set custom cursor to the JFrame
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImage = toolkit.getImage("./src/resources/cursor.png");
+        Image cursorImage = toolkit.getImage("./src/main/java/resources/cursor.png");
         Image scaledCursorImg = cursorImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 
         Cursor customCursor = toolkit.createCustomCursor(scaledCursorImg,

@@ -32,7 +32,7 @@ public class GameScreen extends Screen{
     @Override
     public void initialize() {
         //background for game screen
-        gameScreenBackground = new ImageIcon("./src/resources/screen_game.png").getImage();
+        gameScreenBackground = new ImageIcon("./src/main/java/resources/screen_game.png").getImage();
 
         // offset panel for gap from top
         JPanel gridOffset1 = new JPanel();
@@ -50,7 +50,7 @@ public class GameScreen extends Screen{
         grid.setPreferredSize(new Dimension(320, 320));
         grid.setOpaque(false);
 
-        warningLabel = new JLabel(new ImageIcon("./src/resources/warning.png"));
+        warningLabel = new JLabel(new ImageIcon("./src/main/java/resources/warning.png"));
         warningLabel.setPreferredSize(new Dimension(550, 130));
         warningLabel.setVisible(false); // warningLabel initially invisible
 
@@ -68,7 +68,7 @@ public class GameScreen extends Screen{
         });
 
         // init word picker and pick a random word
-        this.wordListFile = new WordPicker("./src/resources/wordlist.txt");
+        this.wordListFile = new WordPicker("./src/main/java/resources/wordlist.txt");
         this.wordListFile.generateWord();
 
         // add components

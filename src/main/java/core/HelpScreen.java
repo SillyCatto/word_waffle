@@ -21,9 +21,9 @@ public class HelpScreen extends Screen {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 0));
 
-        helpScreenImage = new ImageIcon("./src/resources/screen_help.png").getImage();
+        helpScreenImage = new ImageIcon("./src/main/java/resources/screen_help.png").getImage();
 
-        ImageIcon crossIcon = new ImageIcon("./src/resources/btn_cross.png");
+        ImageIcon crossIcon = new ImageIcon("./src/main/java/resources/btn_cross.png");
         goBackBtn = Button.createButton(crossIcon);
 
         this.add(goBackBtn);

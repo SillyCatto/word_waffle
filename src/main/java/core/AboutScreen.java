@@ -21,9 +21,9 @@ public class AboutScreen extends Screen {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 0));
 
-        creditImage = new ImageIcon("./src/resources/screen_about.png").getImage();
+        creditImage = new ImageIcon("./src/main/java/resources/screen_about.png").getImage();
 
-        ImageIcon crossIcon = new ImageIcon("./src/resources/btn_cross.png");
+        ImageIcon crossIcon = new ImageIcon("./src/main/java/resources/btn_cross.png");
         goBack = Button.createButton(crossIcon);
 
         this.add(goBack);
