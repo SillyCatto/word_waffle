@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Window extends JFrame{
-    private final JPanel mainPanel;
+    private final JPanel containerPanel;
     private final CardLayout cardLayout;
 
     protected final WelcomeScreen welcomeScreen;
@@ -22,6 +22,7 @@ public class Window extends JFrame{
         this.setSize(width, height);
         this.setTitle("Word Waffle");
 
+        // set app icon
         ImageIcon icon = new ImageIcon("./src/main/java/resources/icon.png");
         this.setIconImage(icon.getImage());
 
@@ -43,18 +44,18 @@ public class Window extends JFrame{
         loseScreen = new LoseScreen(this);
 
         // the main panel which contains other panels
-        mainPanel = new JPanel();
+        containerPanel = new JPanel();
 
         cardLayout = new CardLayout();
-        mainPanel.setLayout(cardLayout);
-        mainPanel.add(welcomeScreen, Screen.ScreenType.WELCOME.toString());
-        mainPanel.add(gameScreen, Screen.ScreenType.GAMEPLAY.toString());
-        mainPanel.add(helpScreen, Screen.ScreenType.HELP.toString());
-        mainPanel.add(aboutScreen, Screen.ScreenType.ABOUT.toString());
-        mainPanel.add(winScreen, Screen.ScreenType.WIN.toString());
-        mainPanel.add(loseScreen, Screen.ScreenType.LOSE.toString());
+        containerPanel.setLayout(cardLayout);
+        containerPanel.add(welcomeScreen, Screen.ScreenType.WELCOME.toString());
+        containerPanel.add(gameScreen, Screen.ScreenType.GAMEPLAY.toString());
+        containerPanel.add(helpScreen, Screen.ScreenType.HELP.toString());
+        containerPanel.add(aboutScreen, Screen.ScreenType.ABOUT.toString());
+        containerPanel.add(winScreen, Screen.ScreenType.WIN.toString());
+        containerPanel.add(loseScreen, Screen.ScreenType.LOSE.toString());
 
-        this.add(mainPanel);
+        this.add(containerPanel);
 
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +76,7 @@ public class Window extends JFrame{
             case WIN -> Screen.ScreenType.WIN.toString();
             case LOSE -> Screen.ScreenType.LOSE.toString();
         };
-        cardLayout.show(mainPanel, screenID);
+        cardLayout.show(containerPanel, screenID);
     }
 }
 

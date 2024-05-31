@@ -7,6 +7,7 @@ public class InputValidator {
         CORRECT_WORD,
         WRONG_WORD,
     }
+
     public static InputType checkInput(LetterBox[] gridRow, String currentAnswer)
             throws NotEnoughLettersException {
 
@@ -38,7 +39,7 @@ public class InputValidator {
                     checkedAnswer[currentIndex] = '*';
                     currentAnswer = new String(checkedAnswer);
 
-                } else { // current letter not found in the answer
+                } else { // current letter not found in the current answer
                     letterBox.updateBoxColor(LetterBox.BoxType.GRAY);
                 }
             }

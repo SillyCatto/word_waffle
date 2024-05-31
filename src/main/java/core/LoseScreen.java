@@ -13,7 +13,7 @@ public class LoseScreen extends Screen {
     private JButton replayBtn;
     private JButton quitBtn;
     protected JLabel answerLabel;
-    private Image loseImage;
+    private Image loseScreenBg;
 
     public LoseScreen(Window window){
         super(window);
@@ -21,10 +21,9 @@ public class LoseScreen extends Screen {
         update();
     }
 
-
     @Override
     public void initialize() {
-        loseImage = new ImageIcon("./src/main/java/resources/screen_lose.gif").getImage();
+        loseScreenBg = new ImageIcon("./src/main/java/resources/screen_lose.gif").getImage();
 
         ImageIcon replayIcon = new ImageIcon("./src/main/java/resources/btn_replay.png");
         replayBtn = Button.createButton(replayIcon);
@@ -49,6 +48,8 @@ public class LoseScreen extends Screen {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
+
+        // set inset for scoreLabel, replayBtn and quitBtn
         gbc.insets = new Insets(300, 0, 0, 0);
         add(answerLabel, gbc);
 
@@ -86,7 +87,6 @@ public class LoseScreen extends Screen {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        g.drawImage(loseImage, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(loseScreenBg, 0, 0, getWidth(), getHeight(), this);
     }
 }

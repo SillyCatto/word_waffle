@@ -13,7 +13,7 @@ public class WinScreen extends Screen {
     private JButton replayBtn;
     private JButton quitBtn;
     private JLabel scoreLabel;
-    private Image winImage;
+    private Image winScreenBg;
 
     public WinScreen(Window window){
         super(window);
@@ -34,7 +34,7 @@ public class WinScreen extends Screen {
         scoreLabel.setForeground(new Color(96, 56, 20));
 
         // Load background image
-        winImage = new ImageIcon("./src/main/java/resources/screen_win.gif").getImage();
+        winScreenBg = new ImageIcon("./src/main/java/resources/screen_win.gif").getImage();
 
         // create replay button
         ImageIcon replayIcon = new ImageIcon("./src/main/java/resources/btn_replay.png");
@@ -52,6 +52,8 @@ public class WinScreen extends Screen {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
+
+        // set inset for scoreLabel, replayBtn and quitBtn
         gbc.insets = new Insets(245, 0, 0, 0);
         add(scoreLabel, gbc);
 
@@ -106,7 +108,6 @@ public class WinScreen extends Screen {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // Draw the background image
-        g.drawImage(winImage, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(winScreenBg, 0, 0, getWidth(), getHeight(), this);
     }
 }

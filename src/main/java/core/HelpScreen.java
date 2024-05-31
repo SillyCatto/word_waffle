@@ -9,7 +9,8 @@ import java.awt.event.ActionListener;
 
 public class HelpScreen extends Screen {
     private JButton goBackBtn;
-    private Image helpScreenImage;
+    private Image helpScreenBg;
+
     public HelpScreen(Window window) {
         super(window);
         initialize();
@@ -21,7 +22,7 @@ public class HelpScreen extends Screen {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 0));
 
-        helpScreenImage = new ImageIcon("./src/main/java/resources/screen_help.png").getImage();
+        helpScreenBg = new ImageIcon("./src/main/java/resources/screen_help.png").getImage();
 
         ImageIcon crossIcon = new ImageIcon("./src/main/java/resources/btn_cross.png");
         goBackBtn = Button.createButton(crossIcon);
@@ -41,9 +42,8 @@ public class HelpScreen extends Screen {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent( g );
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(helpScreenImage, 0, 0, null);
+        super.paintComponent(g);
+        g.drawImage(helpScreenBg, 0, 0, null);
     }
 
 }

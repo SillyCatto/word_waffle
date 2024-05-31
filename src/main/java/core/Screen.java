@@ -10,7 +10,6 @@ public abstract class Screen extends JPanel{
         HELP,
         ABOUT,
         GAMEPLAY,
-        //        HINT,
         WIN,
         LOSE
     }
