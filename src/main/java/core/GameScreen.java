@@ -134,8 +134,7 @@ public class GameScreen extends Screen{
         grid.reset();
 
         // reset position pointer
-        PositionCounter.setRow(0);
-        PositionCounter.setColumn(0);
+        PositionCounter.reset();
     }
 
     // show the warning

@@ -48,7 +48,7 @@ public class LetterBox extends JLabel {
         this.currentBoxType = BoxType.DEFAULT;
 
         Font KGPrimary = FontManager.loadFont(
-                "./src/resources/KGPrimaryPenmanship.ttf",
+                "./src/main/java/resources/KGPrimaryPenmanship.ttf",
                 Font.BOLD, 52f
         );
 
