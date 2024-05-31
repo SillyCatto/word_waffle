@@ -115,10 +115,10 @@ class InputValidatorTest {
     @Test
     public void testShortWord() throws NotEnoughLettersException {
         // set Column position to simulate a full row input
-        PositionCounter.setColumn(LetterGrid.COLUMN);
+        PositionCounter.setColumn(4);
         LetterBox[] gridRow = {
                 new LetterBox(), new LetterBox(), new LetterBox(),
-                new LetterBox(), new LetterBox()
+                new LetterBox()
         };
         gridRow[0].setText("f");
         gridRow[1].setText("o");
@@ -126,13 +126,12 @@ class InputValidatorTest {
         gridRow[3].setText("r");
 
         String answer= "apple";
-        InputValidator.InputType result = InputValidator.checkInput(gridRow, answer);
-        assertEquals(InputValidator.InputType.WRONG_WORD, result);
-        assertEquals(LetterBox.BoxType.GRAY, gridRow[0].getCurrentBoxType());
-        assertEquals(LetterBox.BoxType.GRAY, gridRow[1].getCurrentBoxType());
-        assertEquals(LetterBox.BoxType.GRAY, gridRow[2].getCurrentBoxType());
-        assertEquals(LetterBox.BoxType.GRAY, gridRow[3].getCurrentBoxType());
-        assertEquals(LetterBox.BoxType.GRAY, gridRow[4].getCurrentBoxType());
+
+        assertThrows(NotEnoughLettersException.class, () -> {
+            InputValidator.checkInput(gridRow, answer);
+        });
+
+
 
     }
 
