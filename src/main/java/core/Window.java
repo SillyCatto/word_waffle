@@ -57,17 +57,17 @@ public class Window extends JFrame{
 
         this.add(containerPanel);
 
+        // set first screen to welcome
+        this.changeScreen(Screen.ScreenType.WELCOME);
+
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-
-        // set first screen to welcome
-        this.changeScreen(Screen.ScreenType.WELCOME);
     }
 
     // change screen based on the type
-    public void changeScreen(Screen.ScreenType screen) {
+    protected void changeScreen(Screen.ScreenType screen) {
         String screenID = switch (screen) {
             case WELCOME -> Screen.ScreenType.WELCOME.toString();
             case GAMEPLAY -> Screen.ScreenType.GAMEPLAY.toString();

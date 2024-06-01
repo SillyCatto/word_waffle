@@ -18,7 +18,7 @@ public class HelpScreen extends Screen {
     }
 
     @Override
-    public void initialize() {
+    protected void initialize() {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 0));
 
@@ -31,7 +31,7 @@ public class HelpScreen extends Screen {
     }
 
     @Override
-    public void update() {
+    protected void update() {
         goBackBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

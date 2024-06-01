@@ -26,14 +26,14 @@ public class WordPicker {
         }
     }
 
+    public static String getAnswer(){
+        return answer;
+    }
 
-    public void generateWord(){
+    protected void generateWord(){
         Random rnd = new Random();
         answer = wordList.get(rnd.nextInt(wordList.size()));
         System.out.println("current answer is: " + answer);
     }
 
-    public static String getAnswer(){
-        return answer;
-    }
 }

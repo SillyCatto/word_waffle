@@ -30,7 +30,7 @@ public class GameScreen extends Screen{
     }
 
     @Override
-    public void initialize() {
+    protected void initialize() {
         //background for game screen
         gameScreenBg = new ImageIcon("./src/main/java/resources/screen_game.png").getImage();
 
@@ -80,11 +80,11 @@ public class GameScreen extends Screen{
     }
 
     public LetterGrid getGrid() {
-        return grid;
+        return this.grid;
     }
 
     public WordPicker getWordListFile() {
-        return wordListFile;
+        return this.wordListFile;
     }
 
 
@@ -99,7 +99,7 @@ public class GameScreen extends Screen{
 
 
     @Override
-    public void update() {
+    protected void update() {
         // create inputMap and actionMap for the keys
 
         // handle letter keys
@@ -131,7 +131,7 @@ public class GameScreen extends Screen{
     }
 
 
-    public void reset(LetterGrid grid){
+    protected void reset(LetterGrid grid){
         // clear the grid
         grid.reset();
         // reset position pointer
@@ -139,7 +139,7 @@ public class GameScreen extends Screen{
     }
 
     // show the warning
-    public void showWarning() {
+    protected void showWarning() {
         warningLabel.setVisible(true);
         warningTimer.restart(); // Start or restart the timer
     }

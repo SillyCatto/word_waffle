@@ -21,7 +21,7 @@ public class WelcomeScreen extends Screen {
 
 
     @Override
-    public void initialize() {
+    protected void initialize() {
         welcomeScreenBg = new ImageIcon("./src/main/java/resources/screen_title.png").getImage();
 
         ImageIcon playIcon = new ImageIcon("./src/main/java/resources/btn_play.png");
@@ -45,7 +45,7 @@ public class WelcomeScreen extends Screen {
 
 
     @Override
-    public void update() {
+    protected void update() {
         //handle button clicks
 
         playBtn.addActionListener(new ActionListener() {
@@ -71,7 +71,7 @@ public class WelcomeScreen extends Screen {
 
     }
 
-    // add background image to welcome screen
+
     @Override
     protected void paintComponent( Graphics g ) {
         super.paintComponent( g );

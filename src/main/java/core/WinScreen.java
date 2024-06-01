@@ -22,7 +22,7 @@ public class WinScreen extends Screen {
     }
 
     @Override
-    public void initialize() {
+    protected void initialize() {
         scoreLabel = new JLabel();
 
         Font KGPrimary = FontManager.loadFont(
@@ -67,7 +67,7 @@ public class WinScreen extends Screen {
     }
 
     @Override
-    public void update() {
+    protected void update() {
         replayBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -90,7 +90,7 @@ public class WinScreen extends Screen {
     }
 
     // calculate the score based on the number of tries
-    public void setScore() {
+    protected void setScore() {
         int guessLevel = PositionCounter.getRow();
         int score = switch (guessLevel){
           case 0 -> 100;

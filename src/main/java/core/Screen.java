@@ -19,6 +19,6 @@ public abstract class Screen extends JPanel{
         this.window = window;
     }
 
-    public abstract void initialize();
-    public abstract void update();
+    protected abstract void initialize();
+    protected abstract void update();
 }

@@ -3,7 +3,6 @@ package core;
 import utils.Button;
 import utils.FontManager;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +21,7 @@ public class LoseScreen extends Screen {
     }
 
     @Override
-    public void initialize() {
+    protected void initialize() {
         loseScreenBg = new ImageIcon("./src/main/java/resources/screen_lose.gif").getImage();
 
         ImageIcon replayIcon = new ImageIcon("./src/main/java/resources/btn_replay.png");
@@ -33,11 +32,11 @@ public class LoseScreen extends Screen {
         quitBtn = Button.createButton(quitIcon);
         quitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //to show the correct answer
         Font KGPrimary = FontManager.loadFont(
                 "./src/main/java/resources/KGPrimaryPenmanship.ttf",
                 Font.BOLD, 45f
         );
+
         answerLabel = new JLabel();
         answerLabel.setFont(KGPrimary);
         answerLabel.setForeground(new Color(96, 56, 20));
@@ -63,7 +62,7 @@ public class LoseScreen extends Screen {
     }
 
     @Override
-    public void update() {
+    protected void update() {
         replayBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -84,6 +83,7 @@ public class LoseScreen extends Screen {
             }
         });
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

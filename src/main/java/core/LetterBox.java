@@ -55,7 +55,13 @@ public class LetterBox extends JLabel {
     }
 
 
-    public void setColor(BoxType type) {
+    // get the current BoxType for testing purposes
+    public BoxType getCurrentBoxType() {
+        return currentBoxType;
+    }
+
+
+    protected void setColor(BoxType type) {
         this.setForeground(Color.WHITE);
         this.currentBoxType = type;
 
@@ -86,18 +92,14 @@ public class LetterBox extends JLabel {
         }
     }
 
-    public void updateBoxColor(BoxType type){
+    protected void updateBoxColor(BoxType type){
         this.setColor(type);
     }
 
-    public void clear(){
+    protected void clear(){
         this.setText(" ");
         this.setColor(LetterBox.BoxType.DEFAULT);
     }
 
-    // get the current BoxType for testing purposes
-    public BoxType getCurrentBoxType() {
-        return currentBoxType;
-    }
 }
 

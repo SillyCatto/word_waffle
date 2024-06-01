@@ -11,7 +11,7 @@ public class InputAction {
         this.gameScreen = gameScreen;
     }
 
-    public void typeLetter(char ch){
+    protected void typeLetter(char ch){
         // if there are empty boxes in current row
         if (PositionCounter.getColumn() < LetterGrid.COLUMN){
             // get the letter box at current position
@@ -24,7 +24,7 @@ public class InputAction {
     }
 
 
-    public void pressEnter() {
+    protected void pressEnter() {
         try {
             InputValidator.InputType inputStatus =
                     InputValidator.checkInput(gameScreen.getCurrentRow(),
@@ -52,7 +52,7 @@ public class InputAction {
     }
 
 
-    public void pressBackspace (){
+    protected void pressBackspace (){
         // move back position pointer by one column
         if (PositionCounter.getColumn() > 0){
             PositionCounter.setColumn(PositionCounter.getColumn() - 1);
