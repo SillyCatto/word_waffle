@@ -2,6 +2,11 @@
 
 **A word guessing game inspired by Wordle**
 
+![Static Badge](https://img.shields.io/badge/language-java-brown?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/builtwith-swing-orange?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Version-1.0-blue?style=for-the-badge)
+
+
 ---
 ## 📋 Overview
 
